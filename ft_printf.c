@@ -111,3 +111,24 @@ void	ft_putnbr(int nbr, int *len)
 	}
 }
 
+void	ft_puthex(unsigned int nbr, char *base, int *len)
+{
+	if (nbr < 16)
+		ft_putchar(base[nbr], len);
+	else if (nbr >= 16)
+	{
+		ft_puthex(nbr / 16, base, len);
+		ft_puthex(nbr % 16, base, len);
+	}
+}
+
+void	ft_putpointer(unsigned long nbr, char *base, int *len)
+{
+	if (nbr < 16)
+		ft_putchar(base[nbr], len);
+	else
+	{
+		ft_putpointer(nbr / 16, "0123456789abcdef", len);
+		ft_putpointer(nbr % 16, "0123456789abcdef", len);
+	}
+}
