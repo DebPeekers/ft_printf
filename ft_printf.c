@@ -32,26 +32,31 @@ static void	format_checks (char format, va_list *args, int *len)
 		write(1, "0x", 2);
 		(*len) += 2;
 		ft_putpointer(va_arg(*args, unsigned long), "0123456789abcdef", len:
-				}
+	}
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list arg_p;
-	int			i;
-	int			len;
+	int		i;
+	int		len;
 
 	i = 0;
 	len = 0;
 	va_start(arg_p, format);
 	while (format[i] !='\0')
 	{
-	if (format[i] == '%')
-	{
-		format_checks(format[++i], &arg_p, &len);
-		i++;
+		if (format[i] == '%')
+		{
+			format_checks(format[++i], &arg_p, &len);
+			i++;
 		}
+		else
+		{
+			ft_putchar((char)format[i], &len);
+			i++;
 		}
+	}
 	va_endl(arg_p);
 	return (len);
 }
